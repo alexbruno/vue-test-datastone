@@ -1,13 +1,18 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, suite, vi } from 'vitest'
 import { VueWrapper, mount } from '@vue/test-utils'
 
 import LoginView from '@/views/LoginView.vue'
+import router from '@/router'
 
 describe('LoginView', () => {
   let wrapper: VueWrapper<any>
 
   beforeEach(() => {
-    wrapper = mount(LoginView)
+    wrapper = mount(LoginView, {
+      global: {
+        plugins: [router]
+      }
+    })
   })
 
   it('renders proper title and subtitle', () => {
@@ -58,12 +63,45 @@ describe('LoginView', () => {
   })
 
   describe('when user submits the form', () => {
-    it('calls submit method', async () => {
-      const form = wrapper.find('form')
+    suite('and the credentials are invalid', () => {
+      it('emits error', async () => {
+        const form = wrapper.find('form')
+        const inputs = wrapper.findAll('label > input')
 
-      await form.trigger('submit.prevent')
+        await inputs[0].setValue('user')
+        await inputs[1].setValue('user')
 
-      expect(wrapper.emitted()).toHaveProperty('login')
+        await form.trigger('submit.prevent')
+
+        expect(wrapper.emitted()).toHaveProperty('error')
+      })
+    })
+
+    suite('and the credentials are valid', () => {
+      it('emits success', async () => {
+        const form = wrapper.find('form')
+        const inputs = wrapper.findAll('label > input')
+
+        await inputs[0].setValue('admin')
+        await inputs[1].setValue('admin')
+
+        await form.trigger('submit.prevent')
+
+        expect(wrapper.emitted()).toHaveProperty('success')
+      })
+
+      it('redirects to /sistema', async () => {
+        const form = wrapper.find('form')
+        const inputs = wrapper.findAll('label > input')
+        const push = vi.spyOn(router, 'push')
+
+        await inputs[0].setValue('admin')
+        await inputs[1].setValue('admin')
+
+        await form.trigger('submit.prevent')
+
+        expect(push).toHaveBeenCalledWith('/sistema')
+      })
     })
   })
 

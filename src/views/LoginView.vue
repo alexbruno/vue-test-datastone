@@ -1,11 +1,15 @@
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
+import { Report } from 'notiflix'
+import { AppStore } from '@/modules/store/app'
 import CardBlock from '@/components/layout/CardBlock.vue'
 
-const emit = defineEmits(['login', 'help'])
+const router = useRouter()
+const emit = defineEmits(['success', 'error', 'help'])
 
 function help() {
   emit('help')
-  alert(`Usuário: admin\nSenha: admin`)
+  Report.info('Ajuda', 'Usuário: admin - Senha: admin', 'Ok')
 }
 
 function submit(event: Event) {
@@ -13,16 +17,22 @@ function submit(event: Event) {
   const data = new FormData(form)
   const user = data.get('user') as string
   const password = data.get('password') as string
-  const message = `Você digitou:\nUsuário: ${user}\nSenha: ${password}`
+  const ok = user === 'admin' && password === 'admin'
 
-  emit('login')
-  alert(message)
+  if (ok) {
+    emit('success')
+    router.push('/sistema')
+    AppStore.set('auth', true)
+  } else {
+    emit('error')
+    Report.failure('Acesso negado', 'Usuário ou senha incorretos, tente novamente!', 'Ok')
+  }
 }
 </script>
 
 <template>
   <CardBlock title="Login" subtitle="Digite nos campos o que aparece no placeholder" class="login">
-    <form @submit.prevent="submit" @reset="help">
+    <form autocomplete="off" @submit.prevent="submit" @reset="help">
       <label>
         <p>Usuário</p>
         <input type="text" name="user" placeholder="admin" required />

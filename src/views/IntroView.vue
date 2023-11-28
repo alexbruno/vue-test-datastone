@@ -1,5 +1,17 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { AppStore } from '@/modules/store/app'
 import CardBlock from '@/components/layout/CardBlock.vue'
+
+const router = useRouter()
+
+function checkAuthRedirect() {
+  const auth = AppStore.get('auth')
+  if (auth) router.push('/sistema')
+}
+
+onMounted(checkAuthRedirect)
 </script>
 
 <template>

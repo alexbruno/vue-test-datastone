@@ -11,13 +11,24 @@ const router = createRouter({
     },
     {
       path: '/sobre',
-      name: 'about',
+      name: 'sobre',
       component: () => import('@/views/AboutView.vue')
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/views/LoginView.vue')
+    },
+    {
+      path: '/sistema',
+      component: () => import('@/views/system/SystemView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'sistema',
+          component: () => import('@/views/system/HomeView.vue')
+        }
+      ]
     }
   ]
 })

@@ -25,7 +25,7 @@ defineProps<Props>()
 
 <style lang="pcss" scoped>
 section {
-  @apply bg-white rounded-xl shadow-xl px-6 py-5;
+  @apply bg-white rounded-3xl shadow-xl px-6 py-5;
 
   header {
     h1 {
