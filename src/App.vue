@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
-  </header>
-
-  <RouterView />
+  <main class="content">
+    <RouterView v-slot="{ Component }">
+      <Transition name="fade-slide" mode="out-in" appear>
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
+  </main>
 </template>
 
-<style scoped></style>
+<style lang="pcss" scoped>
+main {
+  @apply flex flex-col items-center justify-center;
+}
+</style>

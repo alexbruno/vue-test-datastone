@@ -1,15 +1,34 @@
+<script lang="ts" setup>
+import CardBlock from '@/components/layout/CardBlock.vue'
+
+function back() {
+  history.back()
+}
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <CardBlock title="Sobre" subtitle="Dados técnicos" class="about">
+    <ul>
+      <li>⚙️ Vite + Vue 3 + TypeScript</li>
+      <li>📚 PostCSS + TailwindCSS</li>
+      <li>🔀 Vue Router</li>
+      <li>💾 Local Storage</li>
+      <li>✅ Vitest + Vue Test Utils</li>
+      <li>🛠️ VueUse, ESLint, Prettier, ...</li>
+      <li>📦 <a href="https://github.com/alexbruno">https://github.com/alexbruno</a></li>
+      <li>👨🏻‍💻 <a href="https://alexbruno.dev">https://alexbruno.dev</a></li>
+    </ul>
+
+    <template v-slot:footer>
+      <nav>
+        <button type="button" class="btn primary" @click="back">Voltar</button>
+      </nav>
+    </template>
+  </CardBlock>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style lang="pcss" scoped>
+nav {
+  @apply text-center;
 }
 </style>

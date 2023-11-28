@@ -1,12 +1,29 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup>
+import CardBlock from '@/components/layout/CardBlock.vue'
+</script>
 
 <template>
-  <main>
-    <h1>Intro</h1>
+  <CardBlock title="Admin" subtitle="Demonstração para testes" class="intro">
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum sint harum repellat autem, fugit
-      provident exercitationem modi, corrupti cupiditate quo sed commodi doloribus libero
-      consequuntur eveniet nesciunt animi itaque amet.
+      Esta é uma demonstração criada para teste técnico de desenvolvimento web e visa simular um
+      painel simples de cadastro para clientes e produtos digitais.
     </p>
-  </main>
+
+    <template v-slot:footer>
+      <nav class="links">
+        <RouterLink to="/login" class="btn primary">Login</RouterLink>
+        <RouterLink to="/sobre" class="btn secondary">Sobre</RouterLink>
+      </nav>
+    </template>
+  </CardBlock>
 </template>
+
+<style lang="pcss" scoped>
+.intro {
+  @apply max-w-md;
+}
+
+.links {
+  @apply flex justify-around;
+}
+</style>
