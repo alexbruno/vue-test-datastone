@@ -1,8 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { VueWrapper, mount } from '@vue/test-utils'
 
 import IntroView from '@/views/IntroView.vue'
-import { AppStore } from '@/modules/store/app'
 import router from '@/router'
 
 describe('IntroView', () => {
@@ -35,22 +34,5 @@ describe('IntroView', () => {
 
     expect(links[1].text()).toBe('Sobre')
     expect(links[1].attributes('href')).toBe('/sobre')
-  })
-
-  describe('checkAuthRedirect', () => {
-    it('does not redirect if user is not logged in', () => {
-      const push = vi.spyOn(router, 'push')
-      wrapper.vm.checkAuthRedirect()
-      expect(push).not.toHaveBeenCalled()
-    })
-
-    it('redirects to /sistema if user is logged in', () => {
-      const push = vi.spyOn(router, 'push')
-
-      AppStore.set('auth', true)
-      wrapper.vm.checkAuthRedirect()
-
-      expect(push).toHaveBeenCalledWith('/sistema')
-    })
   })
 })

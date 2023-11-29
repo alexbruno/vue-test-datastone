@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IntroViewVue from '@/views/IntroView.vue'
+import { AppStore } from '@/modules/store/app'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +8,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'intro',
-      component: IntroViewVue
+      component: IntroViewVue,
+      beforeEnter(to, from, next) {
+        const auth = AppStore.get('auth')
+        return auth ? next('/sistema') : next()
+      }
     },
     {
       path: '/sobre',
@@ -17,11 +22,19 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/LoginView.vue')
+      component: () => import('@/views/LoginView.vue'),
+      beforeEnter(to, from, next) {
+        const auth = AppStore.get('auth')
+        return auth ? next('/sistema') : next()
+      }
     },
     {
       path: '/sistema',
       component: () => import('@/views/system/SystemView.vue'),
+      beforeEnter(to, from, next) {
+        const auth = AppStore.get('auth')
+        return auth ? next() : next('/')
+      },
       children: [
         {
           path: '',

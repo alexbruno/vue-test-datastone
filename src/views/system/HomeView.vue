@@ -3,11 +3,15 @@ import CardBlock from '@/components/layout/CardBlock.vue'
 </script>
 
 <template>
-  <CardBlock title="Home" subtitle="Esta é a página inicial do sistema">
+  <CardBlock title="Admin" subtitle="Boas-vindas ao painel de gestão de Produtos e Clientes!">
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptate inventore
-      ducimus consequatur, accusantium, quisquam numquam temporibus explicabo ipsa qui totam, velit
-      facere illo rem vero maiores perferendis consequuntur sunt?
+      Nesta versão de demonstração você pode gerenciar os clientes e produtos em um sistema de dados
+      em cache local.
     </p>
+    <p>
+      Portanto, todos os dados que você salvar, alterar ou excluir serão persistidos nesta instância
+      do seu navegador.
+    </p>
+    <p>Use o menu abaixo para gerenciar os cadastros de Produtos e Clientes.</p>
   </CardBlock>
 </template>
