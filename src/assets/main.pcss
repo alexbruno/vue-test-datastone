@@ -5,7 +5,7 @@
 /* Base */
 html,
 body {
-  @apply min-h-screen;
+  @apply min-h-screen min-w-full;
   @apply bg-gradient-to-b from-blue-900 to-blue-700;
   @apply flex flex-col items-center justify-center;
 }
@@ -20,7 +20,8 @@ li {
 }
 
 form {
-  input[type],
+  input[type='text'],
+  input[type='password'],
   textarea {
     @apply block w-full rounded-lg bg-slate-200 border-none px-4 py-3;
   }
@@ -45,7 +46,7 @@ form {
 }
 
 .svg-icon {
-  @apply inline-block relative bottom-[0.1em] h-[1em];
+  @apply inline-block h-[1em];
 }
 /* Utils */
 

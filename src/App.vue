@@ -25,25 +25,25 @@ function logout() {
   </main>
 
   <Transition name="fade-slide" mode="out-in" appear>
-    <nav v-if="AppStore.get('auth')">
+    <nav v-if="AppStore.state.auth">
       <RouterLink to="/sistema" title="Início">
-        <HomeIcon />
+        <HomeIcon class="icon" />
       </RouterLink>
 
-      <RouterLink to="/produtos" title="Produtos">
-        <ProductIcon />
+      <RouterLink to="/sistema/produtos" title="Produtos">
+        <ProductIcon class="icon" />
       </RouterLink>
 
-      <RouterLink to="/clientes" title="Clientes">
-        <UsersIcon />
+      <RouterLink to="/sistema/clientes" title="Clientes">
+        <UsersIcon class="icon" />
       </RouterLink>
 
       <RouterLink to="/sobre" title="Sobre">
-        <InfoIcon />
+        <InfoIcon class="icon" />
       </RouterLink>
 
       <button type="button" @click="logout">
-        <LogoutIcon />
+        <LogoutIcon class="icon" />
       </button>
     </nav>
   </Transition>
@@ -51,24 +51,28 @@ function logout() {
 
 <style lang="pcss" scoped>
 main {
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col items-center justify-center mt-8 mb-32;
 }
 
 nav {
   @apply fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10;
-  @apply bg-white rounded-full shadow-lg px-5 py-4;
+  @apply bg-white rounded-full shadow-lg px-5 py-4 border border-blue-700;
   @apply flex justify-center gap-8 text-3xl;
 
   a {
     @apply text-slate-500 hover:text-blue-900;
 
-    &.router-link-active {
+    &.router-link-exact-active {
       @apply text-blue-700;
     }
   }
 
   button {
     @apply text-red-700;
+  }
+
+  .icon {
+    @apply relative bottom-0.5;
   }
 }
 </style>

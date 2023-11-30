@@ -40,6 +40,21 @@ const router = createRouter({
           path: '',
           name: 'sistema',
           component: () => import('@/views/system/HomeView.vue')
+        },
+        {
+          path: 'produtos',
+          name: 'produtos',
+          component: () => import('@/views/system/products/ProductsListView.vue')
+        },
+        {
+          path: 'produtos/novo',
+          name: 'novo-produto',
+          component: () => import('@/views/system/products/ProductCreateView.vue')
+        },
+        {
+          path: 'produtos/editar/:id',
+          name: 'editar-produto',
+          component: () => import('@/views/system/products/ProductUpdateView.vue')
         }
       ]
     }
