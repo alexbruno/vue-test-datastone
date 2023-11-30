@@ -25,7 +25,7 @@ O número da porta atribuída é exibido no terminal, após a execução do coma
 
 A aplicação é bem simples e visa simular um painel administrativo de um sistema de gerenciamento de produtos e clientes.
 
-A tela inicial da aplicação consiste em uma apresentação simples, descrevendo este objetivo e dando acesso ao login, que também é apenas uma simulação estática mas que permite o acesso ao painel administrativo apenas se o usuário informar o login e senha corretos.
+A tela inicial da aplicação consiste em uma apresentação simples, descrevendo este objetivo e dando acesso ao login, que também é apenas uma simulação estática mas que permite o acesso ao painel administrativo apenas se o usuário informar o login e senha corretos. (Clique no botão "Ajuda" se precisar)
 
 Dentro do painel, após o login, é possível gerenciar ambas as entidades (produtos e clientes), que foram criadas com estruturas bem básicas, de acordo com os requisitos solicitados para este teste.
 
