@@ -1,52 +1,56 @@
-# vue-test-datastone
+# vue-test-simple-admin
 
-This template should help get you started developing with Vue 3 in Vite.
+Projeto de teste técnico solicitado para um processo seletivo, para oportunidade de trabalho como Dev Frontend Senior.
 
-## Recommended IDE Setup
+## Como testar?
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Para começar, clone este projeto para um diretório local usando o git.
 
-## Type Support for `.vue` Imports in TS
+Esta aplicação foi desenvolvida utilizando o [Vite](https://vitejs.dev/), um bundler extremamente rápido e eficiente, que utiliza o [ESBuild](https://esbuild.github.io/) para compilar o código.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Portanto, é uma aplicação Node.js, e para executá-la em modo de desenvolvimento é necessário ter o [Node.js](https://nodejs.org/) instalado na máquina. A versão utilizada para o desenvolvimento foi a v18.18.2, mas qualquer patch da versão 18 deve ser compatível. A versão LTS mais recente é a 20, mas não foi testada neste projeto devido ainda ser recente ter algumas quebras de compatibilidade com as versões anteriores.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+Com o Node.js 18 devidamente instalado no ambiente de desenvolvimento, acesse o diretório deste projeto em um terminal de comando e execute os comandos:
 
 ```sh
-npm install
+npm i # instala as dependências do projeto
+npm start # executa o projeto em modo de desenvolvimento
 ```
 
-### Compile and Hot-Reload for Development
+O comando `npm start` executará o servidor de desenvolvimento em uma porta que pode ser acessada em um navegador padrão do sistema, apontando para `http://localhost:[PORTA]/` ou `http://127.0.0.1:[PORTA]/`.
 
-```sh
-npm run dev
-```
+O número da porta atribuída é exibido no terminal, após a execução do comando.
 
-### Type-Check, Compile and Minify for Production
+## Navegando pela aplicação
 
-```sh
-npm run build
-```
+A aplicação é bem simples e visa simular um painel administrativo de um sistema de gerenciamento de produtos e clientes.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+A tela inicial da aplicação consiste em uma apresentação simples, descrevendo este objetivo e dando acesso ao login, que também é apenas uma simulação estática mas que permite o acesso ao painel administrativo apenas se o usuário informar o login e senha corretos.
 
-```sh
-npm run test:unit
-```
+Dentro do painel, após o login, é possível gerenciar ambas as entidades (produtos e clientes), que foram criadas com estruturas bem básicas, de acordo com os requisitos solicitados para este teste.
 
-### Lint with [ESLint](https://eslint.org/)
+## Como executar os testes unitários
 
-```sh
-npm run lint
-```
+Para executar os testes unitários, basta executar o comando `npm t` no terminal, dentro do diretório do projeto. Este comando executará os testes unitários e exibirá o resultado no terminal.
+
+Este comando está configurado para executar os testes em modo "watch", ou seja, sempre que um arquivo for alterado, os testes serão executados novamente. Para encerrar a execução dos testes, basta pressionar `Ctrl+C` no terminal ou simplesmente teclar `q`.
+
+Os testes unitários são feitos utilizando o [Vitest](https://vitest.dev/) combinado ao [Vue Test Utils](https://test-utils.vuejs.org/), que são bibliotecas oficiais do ecossistema Vite e Vue.js.
+
+## Estrutura do projeto
+
+A estrutura do projeto é bem simples, e segue o padrão de projetos Vue.js criados com o [Vue CLI](https://cli.vuejs.org/), com algumas pequenas adaptações.
+
+Todo o código-fonte da aplicação está no diretório `./src/` e os testes unitários estão no diretório `./src/tests/`.
+
+Abaixo, um resumo das principais bibliotecas utilizadas no projeto:
+
+- [Vue.js](https://vuejs.org/) - Framework JavaScript
+- [TypeScript](https://www.typescriptlang.org/) - Superset de JavaScript
+- [Vite](https://vitejs.dev/) - Bundler e servidor de desenvolvimento
+- [Vue Router](https://router.vuejs.org/) - Biblioteca de roteamento para aplicações Vue.js
+- [VueUse](https://vueuse.org/) - Biblioteca de utilitários para Vue.js
+- [PostCSS](https://postcss.org/) - Ferramenta para transformação de CSS (pós-processador CSS)
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS (utilizado em conjunto com o PostCSS)
+- [Vue Test Utils](https://test-utils.vuejs.org/) - Biblioteca oficial para testes unitários de aplicações Vue.js
+- [Vitest](https://vitest.dev/) - Biblioteca oficial para execução de testes unitários de aplicações Vite
