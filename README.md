@@ -4,7 +4,9 @@ Projeto de teste técnico solicitado para um processo seletivo, para oportunidad
 
 ## Como testar?
 
-Para começar, clone este projeto para um diretório local usando o git.
+A aplicação pode ser testada em: [https://vue-test-simple-admin.netlify.app/](https://vue-test-simple-admin.netlify.app/).
+
+Para verificar a aplicação em ambiente de desenvolvimento, clone este projeto para um diretório local usando o git.
 
 Esta aplicação foi desenvolvida utilizando o [Vite](https://vitejs.dev/), um bundler extremamente rápido e eficiente, que utiliza o [ESBuild](https://esbuild.github.io/) para compilar o código.
 
