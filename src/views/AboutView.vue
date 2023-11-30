@@ -15,7 +15,7 @@ function back() {
       <li>💾 Local Storage</li>
       <li>✅ Vitest + Vue Test Utils</li>
       <li>🛠️ VueUse, ESLint, Prettier, ...</li>
-      <li>📦 <a href="https://github.com/alexbruno/vue-test-simple-admin">https://github.com/alexbruno/vue-test-simple-admin</a></li>
+      <li>📦 <a href="alexbruno/vue-test-simple-admin">https://github.com/alexbruno/vue-test-simple-admin</a></li>
       <li>👨🏻‍💻 <a href="https://alexbruno.dev">https://alexbruno.dev</a></li>
     </ul>
 
