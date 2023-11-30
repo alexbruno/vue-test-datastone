@@ -6,14 +6,15 @@ import { ProductsStore, type Product } from '@/modules/store/products'
 import CardBlock from '@/components/layout/CardBlock.vue'
 import UpdateItemStatus from '@/components/crud/UpdateItemStatus.vue'
 
+const index = '/sistema/produtos'
+
 const router = useRouter()
 
-const placeholder: Product = {
+const product = ref<Product>({
   id: '',
   name: '',
   active: true
-}
-const product = ref<Product>(placeholder)
+})
 
 function load() {
   const id = router.currentRoute.value.params.id as string
@@ -22,13 +23,13 @@ function load() {
   if (prod?.id) product.value = prod
   else
     Report.failure('Produto não encontrado', 'Não foi possível encontrar o produto!', 'Ok', () =>
-      router.push('/sistema/produtos')
+      router.push(index)
     )
 }
 
 function submit() {
   ProductsStore.updateProduct(product.value)
-  router.push('/sistema/produtos')
+  router.push(index)
 }
 
 onMounted(load)
@@ -38,15 +39,21 @@ onMounted(load)
   <CardBlock title="Produtos" subtitle="Editar produto" class="card">
     <form @submit.prevent="submit">
       <label>
-        <p>Nome do produto</p>
-        <input type="text" name="name" required v-model="product.name" />
+        <p>Nome do produto *</p>
+        <input
+          required
+          type="text"
+          name="name"
+          placeholder="Nome do produto"
+          v-model="product.name"
+        />
       </label>
 
       <UpdateItemStatus v-model="product.active" />
 
       <div class="actions">
         <button type="submit" class="btn primary">Salvar</button>
-        <RouterLink to="/sistema/produtos" class="btn secondary">Voltar</RouterLink>
+        <RouterLink :to="index" class="btn secondary">Voltar</RouterLink>
       </div>
     </form>
   </CardBlock>
@@ -57,11 +64,7 @@ onMounted(load)
   @apply w-full max-w-sm;
 }
 
-form {
-  @apply grid gap-4;
-}
-
 .actions {
-  @apply flex justify-around mt-4;
+  @apply flex justify-around mt-8;
 }
 </style>

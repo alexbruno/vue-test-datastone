@@ -27,6 +27,8 @@ function changeStatus() {
       <span>{{ active ? 'Ativo' : 'Inativo' }}</span>
     </a>
 
+    <slot />
+
     <RouterLink :to="edit" class="edit">
       <EditIcon />
       <span>Editar</span>

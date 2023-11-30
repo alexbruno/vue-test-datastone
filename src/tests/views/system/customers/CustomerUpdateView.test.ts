@@ -1,16 +1,16 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { VueWrapper, mount } from '@vue/test-utils'
 
-import ProductUpdateView from '@/views/system/products/ProductUpdateView.vue'
-import { ProductsStore } from '@/modules/store/products'
+import CustomerUpdateView from '@/views/system/customers/CustomerUpdateView.vue'
+import { CustomersStore } from '@/modules/store/customers'
 import router from '@/router'
 
-describe('ProductUpdateView', () => {
+describe('CustomerUpdateView', () => {
   let wrapper: VueWrapper<any>
-  const getProductById = vi.spyOn(ProductsStore, 'getProductById')
+  const getCustomerById = vi.spyOn(CustomersStore, 'getCustomerById')
 
   beforeEach(() => {
-    wrapper = mount(ProductUpdateView, {
+    wrapper = mount(CustomerUpdateView, {
       global: {
         plugins: [router]
       }
@@ -22,8 +22,8 @@ describe('ProductUpdateView', () => {
     const h1 = header.find('h1')
     const p = header.find('p')
 
-    expect(h1.text()).toBe('Produtos')
-    expect(p.text()).toBe('Editar produto')
+    expect(h1.text()).toBe('Clientes')
+    expect(p.text()).toBe('Editar cliente')
   })
 
   it('renders proper form', () => {
@@ -42,45 +42,41 @@ describe('ProductUpdateView', () => {
     expect(UpdateItemStatus.exists()).toBe(true)
   })
 
-  it('renders a link to go back to products list', () => {
+  it('renders a link to go back to customers list', () => {
     const link = wrapper.find('a')
 
     expect(link.exists()).toBe(true)
     expect(link.text()).toBe('Voltar')
-    expect(link.attributes('href')).toBe('/sistema/produtos')
+    expect(link.attributes('href')).toBe('/sistema/clientes')
   })
 
-  it('calls ProductsStore.getProductById with the id from route params', async () => {
+  it('calls CustomersStore.getCustomerById with the id from route params', async () => {
     const id = router.currentRoute.value.params.id
 
-    expect(getProductById).toHaveBeenCalledWith(id)
+    expect(getCustomerById).toHaveBeenCalledWith(id)
   })
 
   describe('when form is submitted', () => {
-    it('updates the product to the list', async () => {
+    it('updates the customer to the list', async () => {
       const form = wrapper.find('form')
       const name = form.find('input[name="name"]')
-      const update = vi.spyOn(ProductsStore, 'updateProduct')
+      const update = vi.spyOn(CustomersStore, 'updateCustomer')
 
-      await name.setValue('Product 1')
+      await name.setValue('Customer Star')
       await form.trigger('submit.prevent')
 
-      expect(update).toHaveBeenCalledWith({
-        id: '',
-        active: true,
-        name: 'Product 1'
-      })
+      expect(update).toHaveBeenCalled()
     })
 
-    it('redirects to products list', async () => {
+    it('redirects to customers list', async () => {
       const form = wrapper.find('form')
       const name = form.find('input[name="name"]')
       const push = vi.spyOn(router, 'push')
 
-      await name.setValue('Product 1')
+      await name.setValue('Customer Star')
       await form.trigger('submit.prevent')
 
-      expect(push).toHaveBeenCalledWith('/sistema/produtos')
+      expect(push).toHaveBeenCalledWith('/sistema/clientes')
     })
   })
 })

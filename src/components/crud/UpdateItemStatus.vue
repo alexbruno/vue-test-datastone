@@ -6,13 +6,9 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
-const active = computed<boolean>({
-  get() {
-    return props.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
-  }
+const value = computed<boolean>({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value)
 })
 </script>
 
@@ -21,11 +17,11 @@ const active = computed<boolean>({
     <p>Status</p>
     <div class="options">
       <label class="true">
-        <input type="radio" name="active" :value="true" v-model="active" />
+        <input type="radio" name="active" :value="true" v-model="value" />
         <span>Ativo</span>
       </label>
       <label class="false">
-        <input type="radio" name="active" :value="false" v-model="active" />
+        <input type="radio" name="active" :value="false" v-model="value" />
         <span>Inativo</span>
       </label>
     </div>

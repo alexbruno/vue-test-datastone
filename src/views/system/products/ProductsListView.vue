@@ -2,10 +2,6 @@
 import { ProductsStore } from '@/modules/store/products'
 import CardBlock from '@/components/layout/CardBlock.vue'
 import ListItemLinks from '@/components/crud/ListItemLinks.vue'
-
-function changeStatus(id: string) {
-  ProductsStore.changeProductStatus(id)
-}
 </script>
 
 <template>
@@ -15,8 +11,8 @@ function changeStatus(id: string) {
         <strong>{{ product.name }}</strong>
         <ListItemLinks
           :active="product.active"
-          :edit="`/sistema/produtos/editar/${product.id}`"
-          @status="() => changeStatus(product.id)"
+          :edit="`/sistema/produtos/${product.id}/editar`"
+          @status="() => ProductsStore.changeProductStatus(product.id)"
         />
       </li>
     </ul>

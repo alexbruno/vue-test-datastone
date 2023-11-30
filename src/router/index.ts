@@ -52,9 +52,29 @@ const router = createRouter({
           component: () => import('@/views/system/products/ProductCreateView.vue')
         },
         {
-          path: 'produtos/editar/:id',
+          path: 'produtos/:id/editar',
           name: 'editar-produto',
           component: () => import('@/views/system/products/ProductUpdateView.vue')
+        },
+        {
+          path: 'clientes',
+          name: 'clientes',
+          component: () => import('@/views/system/customers/CustomersListView.vue')
+        },
+        {
+          path: 'clientes/novo',
+          name: 'novo-cliente',
+          component: () => import('@/views/system/customers/CustomerCreateView.vue')
+        },
+        {
+          path: 'clientes/:id/editar',
+          name: 'editar-cliente',
+          component: () => import('@/views/system/customers/CustomerUpdateView.vue')
+        },
+        {
+          path: 'clientes/:id/produtos',
+          name: 'cliente-produtos',
+          component: () => import('@/views/system/customers/CustomerProductsView.vue')
         }
       ]
     }

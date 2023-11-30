@@ -3,6 +3,8 @@ import { useRouter } from 'vue-router'
 import { ProductsStore } from '@/modules/store/products'
 import CardBlock from '@/components/layout/CardBlock.vue'
 
+const index = '/sistema/produtos'
+
 const router = useRouter()
 
 function submit(event: Event) {
@@ -11,21 +13,21 @@ function submit(event: Event) {
   const name = formData.get('name') as string
 
   ProductsStore.createProduct(name)
-  router.push('/sistema/produtos')
+  router.push(index)
 }
 </script>
 
 <template>
   <CardBlock title="Produtos" subtitle="Criar novo produto" class="card">
-    <form @submit.prevent="submit">
+    <form autocomplete="off" @submit.prevent="submit">
       <label>
-        <p>Nome do produto</p>
-        <input type="text" name="name" required />
+        <p>Nome do produto *</p>
+        <input type="text" name="name" placeholder="Nome do produto" required />
       </label>
 
       <div class="actions">
         <button type="submit" class="btn primary">Salvar</button>
-        <RouterLink to="/sistema/produtos" class="btn secondary">Voltar</RouterLink>
+        <RouterLink :to="index" class="btn secondary">Voltar</RouterLink>
       </div>
     </form>
   </CardBlock>

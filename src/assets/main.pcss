@@ -19,12 +19,20 @@ li {
   @apply my-2;
 }
 
-form {
-  input[type='text'],
-  input[type='password'],
-  textarea {
-    @apply block w-full rounded-lg bg-slate-200 border-none px-4 py-3;
+input[type='tel'],
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+  @apply block w-full rounded-lg bg-slate-200 border-none px-4 py-3;
+
+  &:not(:placeholder-shown) {
+    @apply invalid:bg-red-100 invalid:border-red-500 invalid:text-red-900 invalid:focus:ring-red-500;
   }
+}
+
+input[type='checkbox'] {
+  @apply rounded;
 }
 /* Base */
 
@@ -58,11 +66,19 @@ form {
 
 /* Vue Transitions */
 .fade-slide-enter-active,
-.fade-slide-leave-active {
+.fade-slide-leave-active,
+.fade-slide-reverse-enter-active,
+.fade-slide-reverse-leave-active {
   @apply relative transition-all ease-in-out;
 }
+
 .fade-slide-enter-from,
 .fade-slide-leave-to {
   @apply opacity-0 translate-y-10;
+}
+
+.fade-slide-reverse-enter-from,
+.fade-slide-reverse-leave-to {
+  @apply opacity-0 -translate-y-10;
 }
 /* Vue Transitions */

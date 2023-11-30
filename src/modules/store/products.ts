@@ -31,7 +31,7 @@ class ProductsStoreService extends StoreService<ProductsStoreState> {
 
   changeProductStatus(id: string): void {
     const product = this.getProductById(id)
-    if (product) {
+    if (product?.id) {
       product.active = !product.active
       this.updateProduct(product)
     }
